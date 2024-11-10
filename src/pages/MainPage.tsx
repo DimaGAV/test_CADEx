@@ -65,13 +65,11 @@ const MainPage: React.FC = () => {
         }}
       >
         <Typography variant="h2">Less important title</Typography>
-        {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}> */}
         <Link to="/contact" style={{ marginTop: "60px" }}>
           <Button variant="contained" color="primary">
             Contact Us
           </Button>
         </Link>
-        {/* </Box> */}
       </Container>
     </>
   );

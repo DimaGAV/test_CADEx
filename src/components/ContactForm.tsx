@@ -1,62 +1,126 @@
-import { Button, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import React, { useState } from "react";
-import styled from "styled-components";
-
-const StyledTextField = styled(TextField)`
-    margin-bottom: 1rem;
-    
-    &.MuiOutlinedInput-root {
-        &.Mui-focused fieldset {
-            border-color: #1976d2
-        }
-    }
-`
+import { Container, TextField, Button, Typography, Box } from "@mui/material";
+import axios from "axios";
 
 const ContactForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [responseMessage, setResponseMessage] = useState("");
 
-    const [name, setName] = useState('')
-    const [message, setMessage] = useState('')
-    const [responseMessage, setResponseMessage] = useState('')
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        try {
-            const response = await axios.post('http://localhost:5000/api/contact', {name, message})
-            setResponseMessage(response.data)
-        } catch (error) {
-            console.error(error)
-        }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/api/contact", {
+        formData,
+      });
+      setResponseMessage(response.data);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-return (
-<form onSubmit={handleSubmit}>
-<StyledTextField
-label='Name'
-variant="outlined"
-required
-fullWidth
-value={name}
-onChange={(e) => setName(e.currentTarget.value)}
-/>
+  return (
+    <>
+      <Container
+        // maxWidth="sm"
+        sx={{
+          width: "100vw",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <Typography variant="h2" gutterBottom textAlign="center">
+          Contact Us
+        </Typography>
+        <Box
+          sx={{
+            width: "400px",
+            backgroundColor: "#ffffff",
+            padding: 4,
+            borderRadius: 3,
+            boxShadow: 2,
+          }}
+        >
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 5,
+            }}
+          >
+            <Box sx={{ width: "100%" }}>
+              <Typography variant="subtitle1">Name</Typography>
+              <TextField
+                name="name"
+                placeholder="Value"
+                value={formData.name}
+                onChange={handleChange}
+                fullWidth
+                required
+              />
+            </Box>
 
-<StyledTextField
-label='Message'
-variant="outlined"
-required
-fullWidth
-multiline
-rows={4}
-value={message}
-onChange={(e) => setMessage(e.currentTarget.value)}
-/>
+            <Box sx={{ width: "100%" }}>
+              <Typography variant="subtitle1">Email</Typography>
+              <TextField
+                name="email"
+                placeholder="Value"
+                value={formData.email}
+                onChange={handleChange}
+                fullWidth
+                required
+              />
+            </Box>
 
-<Button type='submit' variant="contained" color="primary">
-Submit
-</Button>
-{responseMessage && <Typography sx={{marginTop: '1rem'}}>{responseMessage}</Typography>}
-</form>
-)
-}
+            <Box sx={{ width: "100%" }}>
+              <Typography variant="subtitle1">Message</Typography>
+              <TextField
+                name="message"
+                placeholder="Value"
+                value={formData.message}
+                onChange={handleChange}
+                fullWidth
+                required
+                multiline
+                minRows={4}
+              />
+            </Box>
 
-export default ContactForm
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              sx={{ width: "100%", height: 48 }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+      {responseMessage && (
+        <Typography sx={{ marginTop: "1rem" }}>{responseMessage}</Typography>
+      )}
+    </>
+  );
+};
+
+export default ContactForm;
