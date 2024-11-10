@@ -1,22 +1,35 @@
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import React from "react";
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const HeaderContainer = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+`;
+
+const Logo = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+`;
 
 const Header: React.FC = () => {
   return (
-    <AppBar position="sticky">
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          My Website
-          <Button component={Link} to="/">
-            Main
-          </Button>
-          <Button component={Link} to="contact">
-            Contact Us
-          </Button>
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <HeaderContainer>
+      <Link to="/">
+        <Logo>Some Company</Logo>
+      </Link>
+      <Link to="/contact">
+        <Button variant="contained" color="primary">
+          Contact Us
+        </Button>
+      </Link>
+    </HeaderContainer>
   );
 };
 
