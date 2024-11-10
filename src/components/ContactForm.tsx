@@ -34,90 +34,93 @@ const ContactForm: React.FC = () => {
 
   return (
     <>
-      <Container
-        // maxWidth="sm"
-        sx={{
-          width: "100vw",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "100vh",
-          backgroundColor: "#f5f5f5",
-        }}
-      >
-        <Typography variant="h2" gutterBottom textAlign="center">
-          Contact Us
+      {responseMessage ? (
+        <Typography variant="h1" textAlign="center" sx={{ marginTop: "1rem" }}>
+          {responseMessage}
         </Typography>
-        <Box
+      ) : (
+        <Container
+          // maxWidth="sm"
           sx={{
-            width: "400px",
-            backgroundColor: "#ffffff",
-            padding: 4,
-            borderRadius: 3,
-            boxShadow: 2,
+            width: "100vw",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+            backgroundColor: "#f5f5f5",
           }}
         >
+          <Typography variant="h2" gutterBottom textAlign="center">
+            Contact Us
+          </Typography>
           <Box
-            component="form"
-            onSubmit={handleSubmit}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 5,
+              width: "400px",
+              backgroundColor: "#ffffff",
+              padding: 4,
+              borderRadius: 3,
+              boxShadow: 2,
             }}
           >
-            <Box sx={{ width: "100%" }}>
-              <Typography variant="subtitle1">Name</Typography>
-              <TextField
-                name="name"
-                placeholder="Value"
-                value={formData.name}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-            </Box>
-
-            <Box sx={{ width: "100%" }}>
-              <Typography variant="subtitle1">Email</Typography>
-              <TextField
-                name="email"
-                placeholder="Value"
-                value={formData.email}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-            </Box>
-
-            <Box sx={{ width: "100%" }}>
-              <Typography variant="subtitle1">Message</Typography>
-              <TextField
-                name="message"
-                placeholder="Value"
-                value={formData.message}
-                onChange={handleChange}
-                fullWidth
-                required
-                multiline
-                minRows={4}
-              />
-            </Box>
-
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              sx={{ width: "100%", height: 48 }}
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 5,
+              }}
             >
-              Submit
-            </Button>
+              <Box sx={{ width: "100%" }}>
+                <Typography variant="subtitle1">Name</Typography>
+                <TextField
+                  name="name"
+                  placeholder="Value"
+                  value={formData.name}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                />
+              </Box>
+
+              <Box sx={{ width: "100%" }}>
+                <Typography variant="subtitle1">Email</Typography>
+                <TextField
+                  name="email"
+                  placeholder="Value"
+                  value={formData.email}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                />
+              </Box>
+
+              <Box sx={{ width: "100%" }}>
+                <Typography variant="subtitle1">Message</Typography>
+                <TextField
+                  name="message"
+                  placeholder="Value"
+                  value={formData.message}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  multiline
+                  minRows={4}
+                />
+              </Box>
+
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{ width: "100%", height: 48 }}
+              >
+                Submit
+              </Button>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-      {responseMessage && (
-        <Typography sx={{ marginTop: "1rem" }}>{responseMessage}</Typography>
+        </Container>
       )}
     </>
   );
