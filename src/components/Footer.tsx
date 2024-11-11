@@ -6,7 +6,9 @@ const Footer: React.FC = () => {
       component="footer"
       sx={{ textAlign: "center", padding: "1em", marginTop: "auto" }}
     >
-      <Typography variant="body2">Some Company 2024</Typography>
+      <Typography variant="body2" fontSize="32px" fontWeight="bold">
+        Some Company 2024
+      </Typography>
     </Box>
   );
 };
