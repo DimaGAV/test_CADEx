@@ -3,7 +3,7 @@ import React from "react";
 const VideoEmbed: React.FC = () => {
   return (
     <iframe
-      width="560"
+      width="1280"
       height="280"
       src="https://www.youtube.com/embed/dQw4w9WgXcQ"
       title="YouTube video"

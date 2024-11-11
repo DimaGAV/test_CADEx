@@ -16,7 +16,7 @@ const ContactForm: React.FC = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: value.trimStart(),
     }));
   };
 
@@ -51,8 +51,13 @@ const ContactForm: React.FC = () => {
             backgroundColor: "#f5f5f5",
           }}
         >
-          <Typography variant="h2" gutterBottom textAlign="center">
-            Contact Us
+          <Typography
+            variant="h2"
+            gutterBottom
+            textAlign="center"
+            fontWeight="bold"
+          >
+            Contact us
           </Typography>
           <Box
             sx={{

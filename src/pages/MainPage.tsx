@@ -11,12 +11,14 @@ const MainPage: React.FC = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          background: "#DCDCDC",
+          background: "#f5f5f5",
           padding: 2,
         }}
       >
-        <Container sx={{ width: "500px" }}>
-          <Typography variant="h2">Most important title on the page</Typography>
+        <Container sx={{ width: "100%", height: "400px" }}>
+          <Typography variant="h2" fontWeight="bold">
+            Most important title on the page
+          </Typography>
           <Typography>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
             iure cum nobis repellat, libero repudiandae minus eum fugiat
@@ -27,16 +29,23 @@ const MainPage: React.FC = () => {
         <VideoEmbed />
       </Container>
 
-      <Typography variant="h2" textAlign="center" sx={{ mt: 4, mb: 2 }}>
+      <Typography
+        variant="h2"
+        textAlign="center"
+        fontWeight="bold"
+        sx={{ mt: 8, mb: 16 }}
+      >
         Also very important title
       </Typography>
 
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container spacing={10} justifyContent="center">
         {[...Array(6)].map((_, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card sx={{ padding: 2, textAlign: "left" }}>
-              <Typography variant="h4">Title</Typography>
-              <Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Title
+              </Typography>
+              <Typography fontSize="18px">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequuntur adipisci enim vitae ullam.
               </Typography>
@@ -44,10 +53,10 @@ const MainPage: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 6, mb: 2 }}>
         <Link to="/contact">
           <Button variant="contained" color="primary">
-            Contact Us
+            Contact us
           </Button>
         </Link>
       </Box>
@@ -57,17 +66,19 @@ const MainPage: React.FC = () => {
           width: "100%",
           height: "350px",
           mt: 4,
-          background: "#DCDCDC",
+          background: "#f5f5f5",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Typography variant="h2">Less important title</Typography>
+        <Typography variant="h2" fontWeight="bold">
+          Less important title
+        </Typography>
         <Link to="/contact" style={{ marginTop: "60px" }}>
           <Button variant="contained" color="primary">
-            Contact Us
+            Contact us
           </Button>
         </Link>
       </Container>
