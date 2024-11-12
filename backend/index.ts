@@ -1,6 +1,6 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express, { Request, Response } from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", (req: Request, res: Response) => {
   const { name } = req.body.formData;
   console.log("Received data:", req.body);
   res.send(`Thank you for your interest, ${name}.`);
